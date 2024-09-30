@@ -1,0 +1,220 @@
+// Variables
+$primary-color:rgba(255, 239, 231, 1);
+$secondary-color: #FFDAC6;
+$tertiary-color: rgba(186, 189, 141, 1);
+$primary-text-color: #7C6A0A;
+$quaternary-color: #FA9500;
+$text-color: #E86424;
+$font-stack:"IBM Plex Sans", sans-serif;
+$paragraph-size: 1.3em;
+// Resumir una parte del codigo que se use mucho
+@mixin flexCenter($direction, $content, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $content;
+    align-items: $align;
+}
+@mixin buttonStyle {
+    button {
+        background: none;
+        border-style: none;
+    }
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $primary-color;
+    font-family: $font-stack;
+}
+// Anidación
+nav {
+    width: auto;
+    padding: 15px;
+    @include flexCenter(row, space-between, center);
+    //con between los elemento se quedan uno en un extremo y el otro en el otro extremo
+    color: $primary-text-color;
+    p {
+        font-size: $paragraph-size;
+        padding-left: 30px ;
+    }
+    .icons {
+        display: flex;
+        gap: 15px;
+        //Incovando el mixin
+        @include buttonStyle;
+    }
+}
+article {
+    width: auto;
+    @include flexCenter(row, space-between, center);
+    padding-left: 45px;
+    padding-right: 45px;
+    color: $primary-text-color;
+    padding-top: 70px;
+    .impact-section {
+        @include flexCenter(column,space-evenly,flex-start);
+        //column cambiar la direccion
+        padding-top: 40px;
+        gap: 25px;
+    }
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 3em;
+    }
+    p {
+        font-size: $paragraph-size;
+    }
+    @include buttonStyle;
+    button {
+        width: 12vw;
+        padding: 20px;
+        background-color: $quaternary-color;
+        border-radius: 35px;
+        color: white;
+        font-size: 0.8em;
+        font-weight: bold;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    img {
+        width: 25vw;
+        border-radius: 19px;
+    } 
+}
+section {
+    width: auto;
+    height: auto;
+    padding: 60px;
+    h2 {
+        color: $primary-text-color;
+        font-size: 2em;
+    }
+    .healthcare {
+        padding-bottom: 60px;
+        h2 {
+            font-weight: 300;
+            padding-bottom: 60px;
+        }
+        .card-section {
+            width: auto;
+            height: auto;
+            @include flexCenter(row,space-evenly,center);
+            flex-wrap: wrap;
+            column-gap: 200px;
+            row-gap: 80px;
+        }
+        .product-card {
+            width: 17vw;
+            height: auto;
+            background-color: $secondary-color;
+            color: $primary-text-color;
+            padding: 20px;
+            border-radius: 8px;
+            .icon {
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                padding-bottom: 12px;
+                padding-left: 12px;
+                svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+            .product-image {
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    width: 16vw;
+                    height: 35vh;
+                    object-fit: cover;
+                    border-radius: 6px;
+                }
+            }  
+        }
+    }
+    .furniture {
+        // herencia
+        @extend .healthcare;
+        .product-card {
+            background-color: $tertiary-color;
+            color: white;
+        }
+    }
+}
+.about-us {
+    padding-bottom: 60px;
+    h2 {
+        padding-bottom: 60px;
+    }
+    .mission-section {
+        @include flexCenter(row,space-evenly,center);
+    }
+    .earth {
+        $text-color: #E86424;
+        display: flex;
+        gap: 40px;
+        width: 30vw;
+        color: $text-color;
+        img {
+            object-fit: contain;
+        }
+        p {
+            text-align: center;
+            font-size: $paragraph-size;
+            font-weight: 500;
+        }
+    }
+    .innovation {
+        @extend .earth;
+    }
+}
+.gallery {
+    h2 {
+        padding-bottom: 60px;
+    }
+    .gallery-images {
+        @include flexCenter(row,space-between,center);
+        img {
+            width: 28vw;
+            height: 45vh;
+            object-fit: cover;
+            object-position: 5px 35%;
+            border-radius: 16px;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+.location {
+    color: $text-color;
+    h2 {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+    .map {
+        @include flexCenter(row,center,center);
+        padding-bottom: 50px;
+    }
+    h3, p {
+        font-size: $paragraph-size;
+    }
+}
+footer {
+    background-color: $quaternary-color;
+    width: 100%;
+    height: auto;
+    color: white;
+    padding: 40px;
+    .social-media {
+        @include flexCenter(row,center,center);
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+}
